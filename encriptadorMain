@@ -1,0 +1,115 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.mycompany.tarea2.encriptador;
+
+import java.util.Scanner;
+
+/**
+ *
+ * @author Joe
+ */
+public class encriptador {
+
+    /**
+     * @param args the command line arguments
+     */
+    private static Scanner teclado = new Scanner(System.in);
+
+    public static String Codifica(String palabra, int llave) {
+
+        int codificar = 0;
+        String Resultado = "";
+
+        for (int x = 0; x < palabra.length(); x++) {
+
+            codificar = (int) palabra.charAt(x);
+            codificar = codificar + llave;
+            char caracter = (char) codificar;
+            Resultado = Resultado + caracter;
+
+        }
+
+        return Resultado;
+    }
+
+    public static String Decodifica(String palabra, int llave) { 
+
+        int codificar = 0;
+        String Resultado = "";
+
+        for (int x = 0; x < palabra.length(); x++) {
+
+            codificar = (int) palabra.charAt(x);
+            codificar = codificar - llave;
+            char caracter = (char) codificar;
+            Resultado = Resultado + caracter;
+
+        }
+
+        return Resultado;
+    }
+
+    public static void main(String[] args) {
+
+        String n, pal, pal2, res = null, res2;
+        int op;
+        boolean salir = false;
+
+        while (!salir) {
+
+            System.out.println("¿Qué deseas hacer?\n");
+
+            System.out.println("1. Encriptar");
+            System.out.println("2. Desencriptar");
+            System.out.println("3. Salir");
+
+            System.out.println("Escribe una de las opciones\n");
+            n = teclado.nextLine();
+            op = Integer.parseInt(n);
+
+            switch (op) {
+
+                case 1:
+                    System.out.println("\n\n*** 1. Encriptar ***\n");
+
+                    System.out.println("Usuario 1, ingresa texto: \n");
+                    pal = teclado.nextLine();
+                    res = Codifica(pal, 8);
+                    System.out.println("Palabra codificada: " + res + "\n");
+
+                    break;
+
+                case 2:
+                    System.out.println("*** 2. Desencriptar ***\n");
+
+                    if (res == null) {
+
+                        System.out.println("Ingresa texto a desencriptar: \n");
+                        pal2 = teclado.nextLine();
+                        res2 = Decodifica(pal2, 8);
+                        System.out.println("Palabra desencriptada: " + res2 + "\n");
+
+                    } else {
+
+                        System.out.println("Palabra encriptada: " + res + "\n");
+                        res2 = Decodifica(res, 8);
+                        System.out.println("El texto encriptado dice: " + res2 + "\n");
+
+                    }
+
+                    break;
+
+                case 3:
+                    salir = true;
+                    break;
+
+                default:
+                    System.out.println("Solo números entre 1 y 3");
+            }
+        }
+    }
+
+}
