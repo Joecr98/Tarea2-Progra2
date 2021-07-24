@@ -96,7 +96,7 @@ public class encriptador {
 
                         System.out.println("Palabra encriptada: " + res + "\n");
                         res2 = Decodifica(res, 8);
-                        System.out.println("El texto encriptado dice: " + res2 + "\n");
+                        System.out.println("El texto desencriptado dice: " + res2 + "\n");
 
                     }
 
